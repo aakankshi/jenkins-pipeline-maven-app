@@ -10,9 +10,11 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('SonarQube Analysis') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                WithSonarQubeEnv('SonarQube7.5') {
+                    sh 'mvn clean package sonar:sonar'
+                }
             }
         }
         
@@ -27,12 +29,10 @@ pipeline {
             }
         }
         
-        stage('SonarQube Analysis') {
+        stage('Build') {
             steps {
-                WithSonarQubeEnv('SonarQube7.5') {
-                    sh 'mvn clean package sonar:sonar'
-                }
+                sh 'mvn -B -DskipTests clean package'
             }
-        } 
+        }
     }
 }
