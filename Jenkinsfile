@@ -6,7 +6,7 @@ pipeline {
         
         stage('code checkout') {
             steps {
-                git url: 'https://github.com/snehalshirsath/jenkins-data.git'
+                git url: 'https://github.com/snehalshirsath/jenkins-pipeline-maven-app.git'
             }
         }
         
