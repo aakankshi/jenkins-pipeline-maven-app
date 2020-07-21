@@ -41,7 +41,6 @@ pipeline {
                 
         stage('compile package') {
             steps {
-                def mvnHome = tool name: 'maven-3.6' , type: 'maven'
                 sh "mvn package"
             }
         }
