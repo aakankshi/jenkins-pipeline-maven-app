@@ -10,10 +10,9 @@ pipeline {
             }
         }
         
-        stage('compile package') {
+        stage('Build') {
             steps {
-                def mvnHome = tool name: 'maven-3' , type: 'maven'
-                sh "${mvnHome}/bin/mvn package"
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         
@@ -39,10 +38,11 @@ pipeline {
                 }
             }
         }
-        
-        stage('Build') {
+                
+        stage('compile package') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                def mvnHome = tool name: 'maven-3' , type: 'maven'
+                sh "mvn package"
             }
         }
     }
