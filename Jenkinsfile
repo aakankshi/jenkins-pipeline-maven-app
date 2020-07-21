@@ -10,6 +10,13 @@ pipeline {
             }
         }
         
+        stage('compile package') {
+            steps {
+                def mvnHome = tool name: 'maven-3' , type: 'maven'
+                sh "${mvnHome}/bin/mvn package"
+            }
+        }
+        
         stage('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
