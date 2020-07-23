@@ -49,7 +49,7 @@ pipeline {
             }
         }
         
-        stage('artifactory') {
+        stage('upload artifacts') {
             steps {
                 script {
                     def server = Artifactory.server 'Artifactory 7.6.3'
@@ -58,7 +58,7 @@ pipeline {
                       "files": [
                         {
                           "pattern": "/target/*.jar",
-                          "target": " libs-snapshot/libs-snapshot-local/"
+                          "target": "libs-snapshot/libs-snapshot-local/"
                         }
                      ]
                     }"""
