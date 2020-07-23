@@ -52,14 +52,23 @@ pipeline {
         stage('artifactory') {
             steps {
                 script {
-                    server = Artifactory.server 'Artifactory 7.6.3'
-                    rtMaven.tool = 'maven-3.6'
-                    rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server:server
-                    rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server:server
-                    rtMaven.deployer.artifactoryDeploymentPatterns.addExclude("pom.xml")
-                    buildInfo = Artifactory.newBuildInfo()
-                    buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
+                    def server = Artifactory.server 'Artifactory 7.6.3'
+                    
+                    def uploadSpec = """{
+                      "files": [
+                        {
+                          "pattern": "/target/*.jar",
+                          "target": " libs-snapshot/libs-snapshot-local/"
+                        }
+                     ]
+                    }"""
+                    server.upload(uploadSpec)
+
+                    def buildInfo = Artifactory.newBuildInfo()
                     buildInfo.env.capture = true
+                    buildInfo.env.collect()
+                    buildInfo=server.upload(uploadSpec)
+                    server.publishBuildInfo(buildInfo)
                 }
             }
         }
