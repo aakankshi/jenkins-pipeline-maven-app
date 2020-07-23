@@ -51,10 +51,10 @@ pipeline {
         
         stage('artifactory') {
             steps {
-                def server = Artifactory.server 'Artifactory 7.6.3'
+                server = Artifactory.server 'Artifactory 7.6.3'
                 rtMaven.tool = 'maven-3.6'
                 rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server:server
-                rtMaven.resolver releaseRepo: 'libs-release', snapshotsRepo: 'libs-snapshot', server:server
+                rtMaven.resolver releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot', server:server
                 rtMaven.deployer.artifactoryDeploymentPatterns.addExclude("pom.xml")
                 buildInfo = Artifactory.newBuildInfo()
                 buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
