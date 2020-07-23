@@ -57,7 +57,7 @@ pipeline {
                     def uploadSpec = """{
                       "files": [
                         {
-                          "pattern": "/target/*.jar",
+                          "pattern": "/var/lib/jenkins/workspace/docker-maven-ci-cd/target/*.jar",
                           "target": "libs-snapshot/libs-snapshot-local/"
                         }
                      ]
