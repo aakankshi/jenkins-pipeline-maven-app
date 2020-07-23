@@ -48,5 +48,9 @@ pipeline {
                 sh "mvn package"
             }
         }
+        
+        stage('artifactory') {
+            steps {
+                def rt
     }
 }
