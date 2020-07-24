@@ -3,7 +3,7 @@ pipeline {
     agent any 
     
     environment {
-    registry = "https://hub.docker.com/repository/docker/snehalshirsath/maven-app"
+    registry = "snehalshirsath/maven-app"
     registryCredential = 'dockerHubAccount'
     }
     
