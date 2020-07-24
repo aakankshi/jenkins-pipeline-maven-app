@@ -78,7 +78,7 @@ pipeline {
                 script {
                     def server = Artifactory.server 'Artifactory 7.6.3'
                     
-                    def uploadSpec = """{
+                    def downloadSpec = """{
                       "files": [
                         {
                           "pattern": "libs-snapshot/libs-snapshot-local/*.jar",
@@ -87,11 +87,6 @@ pipeline {
                      ]
                     }"""
                     server.download(downloadSpec)
-
-                    def buildInfo = Artifactory.newBuildInfo()
-                    buildInfo.env.capture = true
-                    buildInfo.env.collect()
-                    server.publishBuildInfo(buildInfo)
                 }
             }
         }
