@@ -72,5 +72,28 @@ pipeline {
                 }
             }
         }
+        
+        stage('download artifacts') {
+            steps {
+                script {
+                    def server = Artifactory.server 'Artifactory 7.6.3'
+                    
+                    def uploadSpec = """{
+                      "files": [
+                        {
+                          "pattern": "libs-snapshot/libs-snapshot-local/*.jar",
+                          "target": "/artifacts"
+                        }
+                     ]
+                    }"""
+                    server.download(downloadSpec)
+
+                    def buildInfo = Artifactory.newBuildInfo()
+                    buildInfo.env.capture = true
+                    buildInfo.env.collect()
+                    server.publishBuildInfo(buildInfo)
+                }
+            }
+        }
     }
 }
