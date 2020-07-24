@@ -2,6 +2,11 @@ pipeline {
     
     agent any 
     
+    environment {
+    registry = "hub.docker.com/repository/docker/snehalshirsath/maven-app"
+    registryCredential = 'dockerHubAccount'
+    }
+    
     tools {
         maven "maven-3.6"
     }
