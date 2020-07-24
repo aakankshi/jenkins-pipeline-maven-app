@@ -3,8 +3,9 @@ pipeline {
     agent any 
     
     environment {
-    registry = "snehalshirsath/maven-app"
-    registryCredential = 'dockerHubAccount'
+        registry = "snehalshirsath/maven-app"
+        registryCredential = 'dockerHubAccount'
+        dockerImage = ""
     }
     
     tools {
