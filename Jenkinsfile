@@ -82,13 +82,21 @@ pipeline {
                       "files": [
                         {
                           "pattern": "libs-snapshot/libs-snapshot-local/*.jar",
-                          "target": "snehal/"
+                          "target": "artifacts/"
                         }
                      ]
                     }"""
                     server.download(downloadSpec)
                 }
             }
+        }
+        
+        stage('Build image') {
+          steps{
+            script {
+              dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            }
+          }
         }
     }
 }
