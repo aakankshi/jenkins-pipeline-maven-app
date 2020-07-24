@@ -82,7 +82,7 @@ pipeline {
                       "files": [
                         {
                           "pattern": "libs-snapshot/libs-snapshot-local/*.jar",
-                          "target": "artifacts/"
+                          "target": "snehal/"
                         }
                      ]
                     }"""
