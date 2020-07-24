@@ -108,7 +108,7 @@ pipeline {
         stage('Push Image') {
           steps{
             script {
-                docker.withRegistry('https://hub.docker.com/v2/', registryCredential) {
+                docker.withRegistry('https://hub.docker.com/snehalshirsath/maven-app/', registryCredential) {
                     dockerImage.push()
               }
             }
