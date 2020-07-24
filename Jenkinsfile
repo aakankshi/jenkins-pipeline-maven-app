@@ -99,7 +99,7 @@ pipeline {
         stage('Build image') {
           steps{
               script {
-                  sh 'chmod 777 /var/run/docker.sock'
+                  sh 'sudo chmod 777 /var/run/docker.sock'
                   dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
           }
