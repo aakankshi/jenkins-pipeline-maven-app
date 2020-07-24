@@ -108,9 +108,10 @@ pipeline {
         stage('Push Image') {
           steps{
             script {
-                docker.withRegistry('https://hub.docker.com/snehalshirsath/maven-app/', 'dockerHubAccount') {
+                withDockerRegistry([ credentialsId: "dockerHubAccount", url: "" ]) {
                     dockerImage.push()
               }
+        
             }
           }
        }
