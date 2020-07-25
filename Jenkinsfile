@@ -115,5 +115,12 @@ pipeline {
             }
           }
        }
+       
+        stage ('Building') {
+          steps {
+            sh '''
+            docker run -it -p 8080:8080 --name sample app ${dockerImage}
+            '''
+        }
     }
 }
