@@ -1,0 +1,37 @@
+1. checkout
+
+2. compile code
+	a) install maven plugin 
+	b) configure maven in global tool configuration in jenkins with auto install enable
+
+3. sonar code check 
+	a) install sonarQube scanner plugin 
+	url: https://www.digitalocean.com/community/tutorials/how-to-ensure-code-quality-with-sonarqube-on-ubuntu-18-04
+	b) configure sonarqube in configure system in jenkins 
+	c) configure sonar scanner in jenkins global tool configuration in jenkins
+
+4. build and create artifact 
+	a) install artifactory plugin
+	b) install artifactory on some server :
+	- sudo docker pull docker.bintray.io/jfrog/artifactory-pro:latest
+	- sudo docker run --name artifactory -d -p 8081:8081 -p 8082:8082 docker.bintray.io/jfrog/artifactory-pro:latest
+	- username : admin pass : snehal123
+
+	c) configure artifactory in jenkins global tool configuration
+
+5. build docker image
+  a) give 777 permission to /var/run/docker.sock
+	b) install Docker Pipeline plugin 
+
+6. push image into docker hub
+  a) add a global credentials with UserId and Password of Docker Hub
+
+7. deploy on docker/k8/ec2
+  a) deploy on docker with docker run command in sh ""
+  b) this will run docker container on the same server on which jenkins is installed
+
+Plugins
+
+Artifact Deployer
+S3 publisher
+Copy Artifact
