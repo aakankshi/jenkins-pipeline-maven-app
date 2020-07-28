@@ -115,14 +115,6 @@ pipeline {
             }
         }
         
-        stage ('Building') {
-           {
-            sh '''
-            docker run -i -p 8080:8080 --name sample-app dockerImage
-            '''
-          }  
-        }
-        
         stage ('deploy image') {
             steps {
                 def dockerRun = "docker run -d -p 8080:8080 --name hello-world ${dockerImage}"
