@@ -8,6 +8,6 @@ WORKDIR /usr/app
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "*.jar"]
+CMD ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
 
-RUN sleep 240
+RUN sleep 120
