@@ -1,0 +1,42 @@
+https://medium.com/@prakashkumar0301/docker-jenkins-ci-cd-pipeline-dd54854125f3
+
+https://medium.com/@anusha.sharma3010/ci-cd-using-jenkins-pipeline-as-code-8879e08031e2
+
+Jforg artifactory :  Uploading and Downloading Files steps in jenkinsfile 
+https://www.jfrog.com/confluence/display/RTF5X/Working+With+Pipeline+Jobs+in+Jenkins
+
+
+*** Run Commands In Stopped Docker Containers:
+
+# Commit the stopped image
+
+docker commit 0dfd54557799 debug/ubuntu
+
+# now we have a new image
+
+docker images list
+REPOSITORY    TAG     IMAGE ID       CREATED         SIZE  
+debug/ubuntu  <none>  cc9db32dcc2d   2 seconds ago   64.3MB
+
+
+# create a new container from the "broken" image
+
+docker run -it --rm --entrypoint sh debug/ubuntu
+
+# inside of the container we can inspect - for example, the file system
+
+$ ls /app
+App.dll
+
+# CTRL+D to exit the container
+
+# delete the container and the image
+docker image rm debug/ubuntu
+
+
+*** Inspect docker container by container id
+$ docker ps -a
+
+exit codes associated with docker container
+$ docker inspect <container-id> --format='{{.State.ExitCode}}'
+
