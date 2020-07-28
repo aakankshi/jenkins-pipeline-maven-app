@@ -1,10 +1,10 @@
-FROM java:8-jdk-alpine
+FROM tomcat
 
 MAINTAINER snehal
 
-COPY /artifacts/libs-snapshot-local/*.jar /usr/app/
+COPY /artifacts/libs-snapshot-local/*.jar /usr/local/tomcat/webapps/
 
-WORKDIR /usr/app
+WORKDIR /usr/local/tomcat/webapps
 
 EXPOSE 8080
 
