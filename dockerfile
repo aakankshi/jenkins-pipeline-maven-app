@@ -10,4 +10,4 @@ EXPOSE 8080
 
 RUN sleep 120
 
-CMD ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/usr/app/*.jar"]
