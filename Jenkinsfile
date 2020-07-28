@@ -118,10 +118,10 @@ pipeline {
         stage ('deploy image') {
             steps {
                 script {
-                    def dockerRun = "docker run -d -p 8080:8080 --name hello-world ${dockerImage}"
-                    sshagent(['docker-server']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.80.3.90 ${dockerRun}"
-                    }
+                    sh "docker run -d -p 8080:8080 --name hello-world ${dockerImage}"
+                    //sshagent(['docker-server']) {
+                    //    sh "ssh -o StrictHostKeyChecking=no ubuntu@3.80.3.90 ${dockerRun}"
+                    //}
                 }
             }
         }
