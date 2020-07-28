@@ -118,7 +118,7 @@ pipeline {
         stage ('deploy image') {
             steps {
                 script {
-                    sh "docker run -d -p 8000:8080 --name hello-world snehalshirsath/maven-app:47"
+                    sh "docker run -d -p 8000:8080 --name hello-world-new snehalshirsath/maven-app:47"
                     //sshagent(['docker-server']) {
                     //    sh "ssh -o StrictHostKeyChecking=no ubuntu@3.80.3.90 ${dockerRun}"
                     //}
