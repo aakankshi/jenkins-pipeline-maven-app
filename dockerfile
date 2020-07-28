@@ -10,4 +10,4 @@ EXPOSE 8080
 
 CMD ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
 
-CMD ["/bin/sleep", "100"]
+RUN ["/bin/sleep", "1000"]
