@@ -1,13 +1,11 @@
-FROM java:8-jdk-alpine
+FROM tomcat
 
 MAINTAINER snehal
 
-COPY /artifacts/libs-snapshot-local/*.jar /usr/app/
+COPY /artifacts/libs-snapshot-local/*.jar /usr/local/tomcat/webapps/
 
-WORKDIR /usr/app
+WORKDIR /usr/local/tomcat/webapps
 
 EXPOSE 8080
 
-RUN sleep 120
-
-CMD ["java", "-jar", "/usr/app/*.jar"]
+CMD ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
