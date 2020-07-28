@@ -114,14 +114,23 @@ pipeline {
         
             }
           }
-       }
-       
+        }
+        
         stage ('Building') {
           steps {
             sh '''
-            docker run -i -p 8080:8080 --name sample app dockerImage
+            docker run -i -p 8080:8080 --name sample-app dockerImage
             '''
           }  
         }
+        
+        stage ('deploy image') {
+            def dockerRun = "docker run -d -p 8080:8080 --name hello-world ${dockerImage}"
+            sshagent(['docker-server']) {
+                sh "ssh -o StrictHostKeyChecking=no ubuntu@3.80.3.90 ${dockerRun}"
+                }
+            }
+        }
+       
     }
 }
